@@ -6,7 +6,7 @@ jobs:
     environment:
      # IMAGE_NAME: pablokbs/hola-docker
     IMAGE_NAME: victormusa/docker-project
-      working_directory: ~/app
+      -working_directory: ~/app
     steps:
       - add_ssh_keys:
 	fingerprints:
