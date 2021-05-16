@@ -4,9 +4,13 @@ jobs:
     docker:
       - image: circleci/buildpack-deps:stretch
     environment:
-      IMAGE_NAME: pablokbs/hola-docker
-    working_directory: ~/app
+     # IMAGE_NAME: pablokbs/hola-docker
+    IMAGE_NAME: victormusa/docker-project
+      working_directory: ~/app
     steps:
+      - add_ssh_keys:
+	fingerprints:
+	- "61:77:68:24:96:39:f2:bc:06:2e:18:2b:85:41:c1:38"
       - checkout
       - setup_remote_docker
       - run:
