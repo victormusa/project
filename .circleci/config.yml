@@ -1,46 +1,13 @@
-version: 2.1
-jobs:
+version: 2
+jobs:   
   build:
-    docker:
-      - image: circleci/buildpack-deps:stretch
-    environment:
-     # IMAGE_NAME: pablokbs/hola-docker
-    IMAGE_NAME: victormusa/docker-project
-      working_directory: ~/app
+    machine: true
     steps:
       - add_ssh_keys:
-	fingerprints:
-	- "61:77:68:24:96:39:f2:bc:06:2e:18:2b:85:41:c1:38"
+          fingerprints: 
+            - "61:77:68:24:96:39:f2:bc:06:2e:18:2b:85:41:c1:38"
       - checkout
-      - setup_remote_docker
-      - run:
-          name: Build Docker image
-          command: |
-            docker build -t $IMAGE_NAME:latest .
-      - run:
-          name: Push Docker Image
-          command: |
-            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-            docker tag $IMAGE_NAME:latest $IMAGE_NAME:$CIRCLE_SHA1
-            docker push $IMAGE_NAME:latest
-            docker push $IMAGE_NAME:$CIRCLE_SHA1
-      - run:
-          name: Install envsubst
-          command: |
-            sudo apt-get update && sudo apt-get -y install gettext-base
-      - run:
-          name: Install kubectl
-          command: |
-            curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-            chmod u+x ./kubectl
-      - run:
-          name: Deploy Code
-          command: sh ./.circleci/scripts/ci-deploy.sh
-workflows:
-  version: 2
-  build-master:
-    jobs:
-      - build:
-          filters:
-            branches:
-              only: master
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker build -t pablokbs/hola-docker:$CIRCLE_SHA1 .
+      - run: docker push pablokbs/hola-docker:$CIRCLE_SHA1
+      - run: ssh -o StrictHostKeyChecking=no root@fredrikson.com.ar "/bin/bash /root/docker/deploy.sh $CIRCLE_SHA1"
