@@ -1,4 +1,4 @@
 #!/bin/bash
-cd /home/ubuntu
+cd /home/ubuntu/project
 Sed -I "s/cicd-project:.*/cicd-project:$1/g" docker-compose.override.yml
-Docker-compose up -d
+sudo Docker-compose up -d
