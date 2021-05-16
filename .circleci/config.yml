@@ -1,3 +1,4 @@
+61:77:68:24:96:39:f2:bc:06:2e:18:2b:85:41:c1:38
 version: 2
 jobs:   
   build:
@@ -9,5 +10,6 @@ jobs:
       - checkout
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build -t pablokbs/hola-docker:$CIRCLE_SHA1 .
-      - run: docker push pablokbs/hola-docker:$CIRCLE_SHA1
-      - run: ssh -o StrictHostKeyChecking=no root@fredrikson.com.ar "/bin/bash /root/docker/deploy.sh $CIRCLE_SHA1"
+      - run: docker push victormusa/cicd-project:$CIRCLE_SHA1
+      - run: docker-compose up -d  
+    #- run: ssh -o StrictHostKeyChecking=no  "/bin/bash /root/docker/deploy.sh $CIRCLE_SHA1"
