@@ -8,7 +8,7 @@ jobs:
             - "61:77:68:24:96:39:f2:bc:06:2e:18:2b:85:41:c1:38"
       - checkout
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run: docker tag victormusa/cicd-project:$CIRCLE_SHA1 .
+      - run: docker tag victormusa/cicd-project:$CIRCLE_SHA1
       - run: docker build -t victormusa/cicd-project:$CIRCLE_SHA1 .
       - run: docker push victormusa/cicd-project:$CIRCLE_SHA1
       - run: docker-compose up -d  
