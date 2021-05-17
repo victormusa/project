@@ -2,4 +2,4 @@ version: "3"
 
 services:
   nginx:
-    image: nginx:1.20.0-alpine
+    image: cicd-project:1.20.0-alpine
