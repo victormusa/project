@@ -13,4 +13,5 @@ jobs:
       - run: docker push victormusa/cicd-project:$CIRCLE_SHA1
       - run: docker-compose up -d  
      # - run: ssh -o StrictHostKeyChecking=no ubuntu@ec2-18-191-79-31.us-east-2.compute.amazonaws.com "/bin/bash /home/ubuntu/project/deploy.sh $CIRCLE_SHA1"
+      - run: chmod 400 aws.pem
       - run: ssh -i "aws.pem" ubuntu@ec2-18-191-79-31.us-east-2.compute.amazonaws.com "/bin/bash /home/ubuntu/project/deploy.sh $CIRCLE_SHA1"
