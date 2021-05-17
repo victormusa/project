@@ -1,4 +1,2 @@
-version: "3"
-
-  nginx_test:
+cicd-project:
     image: victormusa/cicd-project:cd7612d9d56a37d5221cdd524cfbd6fcfeea7fe4

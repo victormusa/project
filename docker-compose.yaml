@@ -1,8 +1,7 @@
-version: "3"
-
 services:
 
-  cicd-project:
+cicd-project:
+    image: victormusa/cicd-project
     build: .
     ports:
       - 80:80
