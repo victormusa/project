@@ -1,7 +1,6 @@
 services:
 
 cicd-project:
-    image: victormusa/cicd-project
     build: .
     ports:
       - 80:80
