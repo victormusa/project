@@ -1,0 +1,5 @@
+version: "3"
+ 
+ services:
+  cicd-project:
+   image: victormusa/cicd-project
