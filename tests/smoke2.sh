@@ -1,5 +1,4 @@
 #!/bin/bash
-
 if [ -z "$1" ]
 then
     echo "usage: smoketest.sh <url>"
@@ -17,4 +16,5 @@ then
     echo "Passed ok status 200"
     exit 1
 fi
+
 done
