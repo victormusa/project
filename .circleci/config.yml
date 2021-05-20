@@ -10,9 +10,14 @@ jobs:
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build -t victormusa/cicd-project:$CIRCLE_SHA1 .
       - run: docker push victormusa/cicd-project:$CIRCLE_SHA1
+#      - run:
+#          name: Run Smoke Test
+#          command: |
+#            echo 'Initializing Smoke Tests'
+#            ./tests/smoke2.sh http://localhost/
+      - run: ssh -i "aws.pem" -o StrictHostKeyChecking=no ubuntu@ec2-52-14-29-188.us-east-2.compute.amazonaws.com "sudo /bin/bash /home/ubuntu/project/deploy.sh $CIRCLE_SHA1"
       - run:
           name: Run Smoke Test
           command: |
             echo 'Initializing Smoke Tests'
-            ./tests/smoke2.sh http://localhost/
-      - run: ssh -i "aws.pem" -o StrictHostKeyChecking=no ubuntu@ec2-52-14-29-188.us-east-2.compute.amazonaws.com "sudo /bin/bash /home/ubuntu/project/deploy.sh $CIRCLE_SHA1"
+            ./tests/smoke2.sh http://ec2-52-14-29-188.us-east-2.compute.amazonaws.com/
