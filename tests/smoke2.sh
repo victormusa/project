@@ -14,7 +14,6 @@ then
 elif [ "$status" = "200" ]
 then 
     echo "Passed ok status 200"
-    exit 1
+    exit 0
 fi
 done
-end
