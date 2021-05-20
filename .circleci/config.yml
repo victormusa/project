@@ -15,5 +15,5 @@ jobs:
           name: Run Smoke Test
           command: |
             echo 'Initializing Smoke Tests on the Cluster'
-            ./tests/smoke
+            ./tests/smoke.sh
             echo "GKE Cluster Tested & Destroyed"
