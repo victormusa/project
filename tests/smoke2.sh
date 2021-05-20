@@ -16,5 +16,5 @@ then
     echo "Passed ok status 200"
     exit 1
 fi
-
 done
+end
