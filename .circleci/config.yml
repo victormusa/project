@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build -t victormusa/cicd-project:$CIRCLE_SHA1 .
-      - run: docker run -d victormusa/cicd-project:$CIRCLE_SHA1 
+      - run: docker run -d victormusa/cicd-project:$CIRCLE_SHA1 -p 80:80 
       - run:
           name: Run Smoke Test
           command: |
