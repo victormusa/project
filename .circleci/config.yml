@@ -24,4 +24,4 @@ jobs:
           name: Run Smoke Test
           command: |
             echo 'Initializing Smoke Tests'
-            ./tests/smoke2.sh http://ec2-52-14-29-188.us-east-2.compute.amazonaws.com/
+            ./tests/smoke2.sh http://ec2-52-14-29-188.us-east-2.compute.amazonaws.com:8750
