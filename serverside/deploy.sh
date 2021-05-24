@@ -1,5 +1,9 @@
-#!/bin/bash
 cd /home/ubuntu/project
-sudo sed -i "s/$2-$3:.*/cicd-project:$1/g" docker-compose.override.yml
-sudo sed -i "s/victormusa/.*/victormusa/$2-$3/g" docker-compose.yaml
+if [ $3 = 'master' ] 
+then
+sudo sed -i "s/victormusa\/project-master.*/victormusa\/project-master:$1/g" docker-compose.override.yml
+elif [ $3 = 'dev' ] 
+then
+sudo sed -i "s/victormusa\/project-dev.*/victormusa\/project-dev:$1/g" docker-compose.override.yml
+fi
 sudo docker-compose up -d
