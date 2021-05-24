@@ -1,4 +1,7 @@
 version: "3.1"
 services:
   cicd-projecting:
-   image: victormusa/cicd-project:fac38096e9b14c9746034079685e2e1c598040bf
+   image: victormusa/project-master:e2097cd73496d21d3aa4834ba19608619c285424
+
+  cicd-projecting_dev:
+   image: victormusa/project-dev:849eb0624e5b47b5ebe098acf1aa4f5fbc7653d4
